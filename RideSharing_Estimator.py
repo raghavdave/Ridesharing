@@ -2,7 +2,7 @@
 """
 Created on Tue Nov 21 19:25:58 2017
 
-@author: rpankajdave
+@author: raghavdave
 """
 #%%
 
@@ -16,13 +16,13 @@ import googlemaps
 import smtplib
 import requests
 
-os.chdir('C:\\Users\\rpankajdave\\Desktop\\Firm Initiative\\Uber')
+os.chdir('dir')
 #%%
 
 def initialization(from_addr,to_addr):
     
     global gmaps,lat_start,long_start,lat_end,long_end
-    GOOGLEMAPS_API_KEY = 'AIzaSyAIG7S5FpC-C4kvp0-7ee0Q__R04QLFk00'
+    GOOGLEMAPS_API_KEY = 'APIKEY'
     gmaps = googlemaps.Client(key=GOOGLEMAPS_API_KEY)
     
     start_loc = gmaps.geocode(from_addr)
@@ -38,13 +38,13 @@ def initialization(from_addr,to_addr):
 def initialization_uber():
 
     global uber_client
-    session = Session(server_token='Mj357yha2eIXfYPOg1OctVUElS8J7gCfOlke87V5')
+    session = Session(server_token='ServerToken')
     uber_client = UberRidesClient(session)
     
 def initialization_ola():
     
     global headers
-    headers = {'X-APP-TOKEN' : "d5b49ae8ae744a78b7534353ec1b59ab"}
+    headers = {'X-APP-TOKEN' : "XAppToken"}
 
 #%%
 def fare_estimator_uber(lat_start, long_start, lat_end, long_end):
@@ -129,9 +129,9 @@ def mail():
     server.ehlo()
     server.starttls()
     
-    gmail_user = "raghavfoolcool@gmail.com"
-    gmail_pwd = "indiarock"
-    TO = 'rpankajdave@deloitte.com'
+    gmail_user = "mail_from@xyz.com"
+    gmail_pwd = "password"
+    TO = 'mail_to@xyz.com'
     SUBJECT = "Uber Prices at " + str(time_now)
     TEXT = text.word.str.cat(sep='\n')
     
@@ -158,8 +158,8 @@ def document():
 
 global from_addr,to_addr
 
-from_addr = 'Deloitte L Block, Hyderabad'
-to_addr = 'Rainbow Vistas Rock Garden'
+from_addr = 'Hyderabad'
+to_addr = 'Mumbai'
 
 initialization(from_addr,to_addr)
 run_estimator_uber()
